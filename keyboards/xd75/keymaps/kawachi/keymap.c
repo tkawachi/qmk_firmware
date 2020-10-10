@@ -23,6 +23,7 @@ enum LAYER{
   _QW,
   _RS,
   _LW,
+  _ADJUST,
   _NUM
 };
 
@@ -44,9 +45,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //LOWER
   [_LW] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, RESET,
-    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_PLUS, KC_EQL,  _______, KC_PAUS, _______, _______,
-    KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP, RGB_SAD, RGB_SAI, _______, KC_MINS, KC_LPRN, KC_RPRN, KC_PIPE, _______, _______, _______, _______,
-    KC_VOLD, KC_MUTE, KC_VOLU, KC_APP,  RGB_VAD, RGB_VAI, _______, KC_UNDS, _______, _______, KC_BSLS, KC_BSLS, _______, KC_VOLU, _______,
+    KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_PLUS, KC_EQL,  KC_ACL0, KC_PAUS, _______, _______,
+    _______, _______, _______, KC_MS_U, _______, _______, _______, KC_MINS, KC_LPRN, KC_RPRN, KC_PIPE, KC_BTN1, _______, _______, _______,
+    _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_UNDS, _______, _______, KC_BSLS, KC_BTN2, _______, KC_VOLU, _______,
     _______, AG_SWAP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_MNXT
   ),
 
@@ -57,6 +58,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   _______, KC_LCBR, KC_RCBR, _______, _______, _______, _______, _______,
     _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  _______, KC_LBRC, KC_RBRC, _______, _______, _______, _______, _______,
     _______, AG_NORM, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  ),
+  // ADJUST
+  [_ADJUST] = LAYOUT(
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP, RGB_SAD, RGB_SAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    KC_VOLD, KC_MUTE, KC_VOLU, KC_APP,  RGB_VAD, RGB_VAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
   // NUM
   [_NUM] = LAYOUT(
@@ -82,8 +91,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         lower_pressed = true;
         lower_pressed_time = record->event.time;
         layer_on(_LW);
+        update_tri_layer(_LW, _RS, _ADJUST);
       } else {
         layer_off(_LW);
+        update_tri_layer(_LW, _RS, _ADJUST);
 
         if (lower_pressed && (TIMER_DIFF_16(record->event.time, lower_pressed_time) < TAPPING_TERM)) {
           register_code(KC_LANG2);
@@ -100,8 +111,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         raise_pressed = true;
         raise_pressed_time = record->event.time;
         layer_on(_RS);
+        update_tri_layer(_LW, _RS, _ADJUST);
       } else {
         layer_off(_RS);
+        update_tri_layer(_LW, _RS, _ADJUST);
 
         if (raise_pressed && (TIMER_DIFF_16(record->event.time, raise_pressed_time) < TAPPING_TERM)) {
           register_code(KC_LANG1);
