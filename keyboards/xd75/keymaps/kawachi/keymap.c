@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LW] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_PSCR, KC_SLCK, RESET,
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_PLUS, KC_EQL,  KC_ACL0, _______, _______, _______,
-    _______, _______, _______, KC_MS_U, _______, _______, _______, KC_MINS, KC_LPRN, KC_RPRN, KC_PIPE, KC_BTN1, _______, _______, _______,
-    _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_UNDS, _______, _______, KC_BSLS, KC_BTN2, _______, KC_VOLU, _______,
+    _______, _______, _______, KC_MS_U, _______, _______, _______, KC_MINS, KC_LPRN, KC_RPRN, KC_PIPE, _______, _______, _______, _______,
+    _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, KC_UNDS, _______, _______, KC_BSLS, _______, _______, KC_VOLU, _______,
     _______, AG_SWAP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_MPRV, KC_VOLD, KC_MNXT
   ),
 
