@@ -40,7 +40,6 @@ enum custom_keycords {
   S_PARTI,
   S_RIGHT,
   S_SELEC,
-  S_THEN,
   S_UPDAT,
   S_WHERE,
 };
@@ -75,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ADJUST
   [_ADJUST] = LAYOUT(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, S_WHERE, _______,  S_RIGHT, S_THEN, _______, S_UPDAT, S_INNER, S_ORDER, S_PARTI, _______, _______, _______, _______,
+    _______, _______, S_WHERE, _______, S_RIGHT, _______, _______, S_UPDAT, S_INNER, S_ORDER, S_PARTI, _______, _______, _______, _______,
     KC_MPRV, KC_MPLY, S_SELEC, KC_MSTP, S_FROM,  S_GROUP, S_HAVIN, _______, _______, S_LEFTJ, _______, _______, _______, _______, _______,
     KC_VOLD, KC_MUTE, KC_VOLU, _______, RGB_VAD, RGB_VAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
@@ -187,11 +186,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case S_RIGHT:
       if (record->event.pressed) {
         SEND_STRING("RIGHT JOIN ");
-      }
-      break;
-    case S_THEN:
-      if (record->event.pressed) {
-        SEND_STRING("THEN ");
       }
       break;
     case S_UPDAT:
