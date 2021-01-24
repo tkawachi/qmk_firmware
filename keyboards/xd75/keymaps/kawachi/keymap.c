@@ -29,7 +29,20 @@ enum LAYER{
 
 enum custom_keycords {
   LOWER = SAFE_RANGE,
-  RAISE
+  RAISE,
+  // SQL keywords
+  S_FROM,
+  S_GROUP,
+  S_HAVIN,
+  S_INNER,
+  S_LEFTJ,
+  S_ORDER,
+  S_PARTI,
+  S_RIGHT,
+  S_SELEC,
+  S_THEN,
+  S_UPDAT,
+  S_WHERE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -62,9 +75,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // ADJUST
   [_ADJUST] = LAYOUT(
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_MPRV, KC_MPLY, KC_MNXT, KC_MSTP, RGB_SAD, RGB_SAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    KC_VOLD, KC_MUTE, KC_VOLU, KC_APP,  RGB_VAD, RGB_VAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+    _______, _______, S_WHERE, _______,  S_RIGHT, S_THEN, _______, S_UPDAT, S_INNER, S_ORDER, S_PARTI, _______, _______, _______, _______,
+    KC_MPRV, KC_MPLY, S_SELEC, KC_MSTP, S_FROM,  S_GROUP, S_HAVIN, _______, _______, S_LEFTJ, _______, _______, _______, _______, _______,
+    KC_VOLD, KC_MUTE, KC_VOLU, _______, RGB_VAD, RGB_VAI, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
   ),
   // NUM
@@ -125,6 +138,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         raise_pressed = false;
       }
       return false;
+      break;
+    case S_HAVIN:
+      if (record->event.pressed) {
+        SEND_STRING("HAVING ");
+      }
+      break;
+    case S_GROUP:
+      if (record->event.pressed) {
+        SEND_STRING("GROUP BY ");
+      }
+      break;
+    case S_SELEC:
+      if (record->event.pressed) {
+        SEND_STRING("SELECT ");
+      }
+      break;
+    case S_FROM:
+      if (record->event.pressed) {
+        SEND_STRING("FROM ");
+      }
+      break;
+    case S_INNER:
+      if (record->event.pressed) {
+        SEND_STRING("INNER JOIN ");
+      }
+      break;
+    case S_ORDER:
+      if (record->event.pressed) {
+        SEND_STRING("ORDER BY ");
+      }
+      break;
+    case S_PARTI:
+      if (record->event.pressed) {
+        SEND_STRING("PARTITION BY ");
+      }
+      break;
+    case S_WHERE:
+      if (record->event.pressed) {
+        SEND_STRING("WHERE ");
+      }
+      break;
+    case S_LEFTJ:
+      if (record->event.pressed) {
+        SEND_STRING("LEFT JOIN ");
+      }
+      break;
+    case S_RIGHT:
+      if (record->event.pressed) {
+        SEND_STRING("RIGHT JOIN ");
+      }
+      break;
+    case S_THEN:
+      if (record->event.pressed) {
+        SEND_STRING("THEN ");
+      }
+      break;
+    case S_UPDAT:
+      if (record->event.pressed) {
+        SEND_STRING("UPDATE ");
+      }
       break;
     default:
       if (record->event.pressed) {
